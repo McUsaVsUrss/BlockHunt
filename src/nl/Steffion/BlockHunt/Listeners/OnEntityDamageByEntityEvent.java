@@ -38,19 +38,15 @@ public class OnEntityDamageByEntityEvent implements Listener {
 							|| arena.gameState == ArenaState.STARTING) {
 						event.setCancelled(true);
 					} else {
-						if (arena.seekers.contains(player)
-								&& arena.seekers.contains(event.getDamager())) {
+						if (arena.seekers.contains(player) && arena.seekers.contains(event.getDamager())) {
 							event.setCancelled(true);
 						} else if (arena.playersInArena.contains(player)
-								&& arena.playersInArena.contains(event
-										.getDamager())
+								&& arena.playersInArena.contains(event.getDamager())
 								&& !arena.seekers.contains(event.getDamager())
 								&& !arena.seekers.contains(player)) {
 							event.setCancelled(true);
 						} else {
-							player.getWorld().playSound(player.getLocation(),
-									Sound.HURT_FLESH, 1, 1);
-
+							player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_HURT, 1, 1);
 							if (event.getDamage() >= player.getHealth()) {
 								player.setHealth(20);
 								event.setCancelled(true);
